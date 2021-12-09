@@ -1,9 +1,9 @@
 import os;
 
-ALLOWED_HOSTS = ['https://clocean.herokuapp.com/',
-                'http://clocean.herokuapp.com/',
-                'clocean.herokuapp.com/',
-                'clocean.herokuapp.com']
+ALLOWED_HOSTS = ['https://clocean-backend.herokuapp.com/',
+                'http://clocean-backend.herokuapp.com/',
+                'clocean-backend.herokuapp.com/',
+                'clocean-backend.herokuapp.com']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
