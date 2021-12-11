@@ -1,4 +1,39 @@
-.header_img{
-    width:50px;
-    height:60px;
+
+.search{
+    margin-top:20px;
+    padding: 10px 20px;
+}
+.search >form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search >form>input{
+    border: none;
+    border-bottom: 2px solid rgba(4, 60, 65, 0.863); 
+    font-size:20px;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.search >form>input:focus{
+    border: none;
+    outline: none;
+    border-bottom: 3px solid rgb(4, 37, 4);
+    font-size:20px;
+}
+
+.search form>input:placeholder-shown ~label{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+}
+
+.search>form >label{
+    position: relative;
+    display: block;
+    font-size: 20px;
+    transition: all 0.4s;
+    margin-left: 10px;
 }

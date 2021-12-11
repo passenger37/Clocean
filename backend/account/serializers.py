@@ -40,8 +40,4 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
-# class AuthenticateUser(serializers.ModelSerializer):
-#     class Meta:
-#         model=Authenticationf
     

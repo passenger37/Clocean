@@ -5,6 +5,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as register from '../../store/action/register';
 
+// Compoenent
+// import Short from '../../components/short-screen/Short';
+
 class Registration extends Component {
 
     componentDidMount () {
@@ -15,15 +18,8 @@ class Registration extends Component {
 
     render() {
         return (
-            <div className={'nav_list '+this.props.class}>
-                <ul>
-                    <a href='#'>Home</a>
-                    <a href='#'>Home</a>
-                    <a href='#'>Home</a>
-                    <a href='#'>Home</a>
-                    <a href='#'>Home</a>
-                    <a href='#'>Home</a>
-                </ul>
+            <div >
+                <small>username</small>
             </div>
         );
     }
