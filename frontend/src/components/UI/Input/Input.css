@@ -1,0 +1,38 @@
+.form_group{
+    padding: 20px;
+}
+
+.form_input{
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background-color: inherit;
+    padding: 10px;
+    width: 100%;
+    border-bottom:3px solid rgba(4, 60, 65, 0.863) ;
+}
+.form_input:focus{
+    border: none;
+    outline: none;
+    border-bottom:3px solid rgb(0, 26, 255) ;
+    background-color: rgba(128, 128, 128, 0.39);
+}
+.form_group >label{
+    position: relative;
+    display: block;
+    font-size: 15px;
+    /* color: white; */
+    transition: all 0.4s;
+    margin-left: 10px;
+}
+
+.form_input:placeholder-shown ~ label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+}
+.invalid{
+    border: none;
+    outline: none;
+    border-bottom:3px solid red ;
+}

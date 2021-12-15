@@ -14,7 +14,7 @@ def upload_image_field(instance,filename):
     new_filename=random.randint(1,5446346843163)
     name,ext=get_file_ext(filename)
     finalname='{new_name}{ext}'.format(new_name=new_filename,ext=ext)
-    return 'media/profile/{new_filename}/{finalname}'.format(new_filename=new_filename,finalname=finalname)
+    return 'media/product/{new_filename}/{finalname}'.format(new_filename=new_filename,finalname=finalname)
 
 class Product(models.Model):
     title=models.CharField(max_length=120)

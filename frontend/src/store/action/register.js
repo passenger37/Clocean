@@ -9,8 +9,8 @@ export const initLogin = () => {
             username:'anand',
             password:'anand'
         };
-        // axios.post('http://127.0.0.1:8000/account/login/',details)
-        axios.post('https://clocean.herokuapp.com/admin/',details)
+        axios.post('http://127.0.0.1:8000/account/login/',details)
+        // axios.post('https://clocean.herokuapp.com/admin/',details)
         .then(response =>{
             dispatch(setLogin(response.data));
         })

@@ -10,7 +10,6 @@ import logo from '../../assests/favicon.png';
 
 // Components
 import Search from '../../components/Search/Search';
-import Registration from '../Registration/Registration';
 import Short from '../../components/short-screen/Short';
 
 class Header extends Component {
@@ -56,7 +55,6 @@ class Header extends Component {
 
                 {/* TODO:web screen */}
                 <Short class={this.state.sidePanel} clicked={this.toggleFabar} />
-                <Registration />
             </Fragment>
         )
     }

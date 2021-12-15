@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 import './Short.css';
 
 // img
@@ -18,8 +19,8 @@ export class short extends Component {
             <div className={'short-nav '+this.props.class} onClick={this.props.clicked}>
                 <div className='short_container1'>
                     <img src={user} />
-                    <a href='#'><small>Login</small></a>
-                    {/* TODO:Login /Signup */}
+                    <NavLink to="/login" >Login </NavLink>
+                    <NavLink to="/signup" >New User ? </NavLink>
                 </div>
                 <div className='short_container2'>
                     <div className='short-features'>
