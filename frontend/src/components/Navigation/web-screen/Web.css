@@ -1,0 +1,35 @@
+.web-nav{
+    display:flex;
+}
+
+.web_container1{
+    display:flex
+}
+
+.web_container2{
+    display:flex
+}
+
+.web-features {
+    padding: 10px;
+}
+
+.web-features >img {
+    width: 30px;
+    height: 30px;
+    clip-path: circle(49% at 50% 50%);
+}
+
+.web_container1 a>img {
+    width: 30px;
+    height: 30px;
+    clip-path: circle(49% at 50% 50%);
+    padding: 10px;
+}
+
+@media (max-width:700px) {
+    .web-nav{
+        display: none;
+    }
+    
+    }

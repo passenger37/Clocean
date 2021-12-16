@@ -1,5 +1,6 @@
 import './Header.css';
 import React, { Component ,Fragment } from 'react';
+import {NavLink} from 'react-router-dom';
 
 // img
 import logo from '../../assests/favicon.png';
@@ -10,7 +11,8 @@ import logo from '../../assests/favicon.png';
 
 // Components
 import Search from '../../components/Search/Search';
-import Short from '../../components/short-screen/Short';
+import Short from '../../components/Navigation/short-screen/Short';
+import FullScreen from '../../components/Navigation/web-screen/Web';
 
 class Header extends Component {
 
@@ -39,8 +41,9 @@ class Header extends Component {
         return (
             <Fragment>
                 <div className='header'>
-                    <img  src ={logo} alt='icon' className='header_img'/>
+                    <NavLink to="/" ><img  src ={logo} alt='icon' className='header_img'/></NavLink>
                     <Search/>
+                    <FullScreen/>
                     <div className="header_nav">
                         <input type="checkbox" name="checkbox" id="checkbtn" />
                         <label htmlFor="checkbtn" onClick={this.toggleFabar}>
@@ -52,8 +55,6 @@ class Header extends Component {
                         </label>
                     </div>
                 </div>
-
-                {/* TODO:web screen */}
                 <Short class={this.state.sidePanel} clicked={this.toggleFabar} />
             </Fragment>
         )

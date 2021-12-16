@@ -119,7 +119,7 @@ class Signup extends Component {
                            invalid={!FormElement.config.valid}
                        />))
                }
-               <Button class="btn" btnType="submit">Login</Button>
+               <Button class="btn" btnType="submit">Signup</Button>
            </form>
            );
 

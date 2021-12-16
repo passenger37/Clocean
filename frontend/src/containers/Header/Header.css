@@ -1,9 +1,9 @@
 .header{
     position: fixed;
-    top:0;
+    /* top:0; */
     display: flex;
     background: rgb(7, 77, 80);
-    width: 100vw;
+    width: 100%;
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
