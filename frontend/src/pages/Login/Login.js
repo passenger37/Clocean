@@ -1,5 +1,6 @@
 import './Login.css';
 import React, { Component,Fragment } from 'react';
+import axios from 'axios';
 
 // redux
 // import {connect} from 'react-redux';
@@ -55,6 +56,28 @@ class Login extends Component {
 
     loginFormHandler=(event)=>{
         event.preventDefault()
+        // const details={
+        //     username:'anand',
+        //     password:'anand'
+        // };
+
+        const data={
+            username:this.state.loginForm.name.value,
+            password:this.state.loginForm.password.value
+        };
+
+        console.log(data,'This is form value');
+        console.log(this.state.loginForm)
+        axios.post('http://127.0.0.1:8000/api/account/login/',data)
+        // axios.post('https://clocean.herokuapp.com/admin/',details)
+        .then(response =>{
+            console.log('>>>>>>>>>>>>>>>> Form Value')
+            console.log(response.data);
+        })
+        .catch(error =>{
+            console.log('>>>>>>>>>>>>> Form Error ')
+            console.log(error)
+        })
     }
 
     checkValidity(value, rules) {

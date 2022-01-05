@@ -1,5 +1,6 @@
 import './Signup.css';
 import React, { Component,Fragment } from 'react';
+import axios from 'axios';
 
 // redux
 // import {connect} from 'react-redux';
@@ -29,10 +30,38 @@ class Signup extends Component {
                     valid: false,
                     touched: false
                 },
+                email:{
+                    elementType:'input',
+                    elementConfig:{
+                        placeholder:'Email',
+                        type:'email'
+                    },
+                    value: '',
+                    validation: {
+                        required: true,
+                    },
+                    valid: false,
+                    touched: false
+                },
                 password:{
                     elementType:'password',
                     elementConfig:{
                         placeholder:'Password',
+                        type:'password'
+                    },
+                    value: '',
+                    validation: {
+                        required: true,
+                        minLength: 8,
+                        maxLength: 20,
+                    },
+                    valid: false,
+                    touched: false
+                },
+                password2:{
+                    elementType:'password',
+                    elementConfig:{
+                        placeholder:'Confirm  Password',
                         type:'password'
                     },
                     value: '',
@@ -55,6 +84,36 @@ class Signup extends Component {
 
     loginFormHandler=(event)=>{
         event.preventDefault()
+        // console.log(this.state.loginForm,'Signup Login Form');
+        // const data={
+        //     username:'Anand7',
+        //     password:'Anand@000',
+        //     password2:'Anand@0002',
+        //     email:'anandsingh@gmail.com'
+        // };
+        
+        const data={
+            username:this.state.loginForm.name.value,
+            password:this.state.loginForm.password.value,
+            password2:this.state.loginForm.password2.value,
+            email:this.state.loginForm.email.value
+        };
+
+        console.log(data,'This is form value');
+        // console.log(this.state.loginForm)
+        axios.post('http://127.0.0.1:8000/api/account/register/',data)
+        // axios.post('https://clocean.herokuapp.com/admin/',details)
+        .then(response =>{
+            console.log('>>>>>>>>>>>>>>>> Form Value')
+            console.log(response.data);
+        })
+        .catch(error =>{
+            console.log('>>>>>>>>>>>>> Form Error ')
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            console.log(error)
+        })
     }
 
     checkValidity(value, rules) {

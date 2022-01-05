@@ -1,5 +1,4 @@
 .login{
-    background:#0b1113;
     padding: 5px;
     width: 100vw;
 }
@@ -9,9 +8,9 @@
     padding: 10px 20px;
     box-sizing: content-box;
     margin:20vh 10vw;
-    background:linear-gradient(to right,rgba(255, 255, 255, 0.76),rgba(255, 255, 255, 0.205));
-    box-shadow: 10px,10px,10px,rgba(0, 0, 0, 0.199);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.199);
     border-radius: 15px;
+    border:0.2px solid rgba(0, 0, 0, 0.219);
 }
 
 .login_form >h1{

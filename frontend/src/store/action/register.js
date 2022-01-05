@@ -13,6 +13,11 @@ export const initLogin = () => {
         // axios.post('https://clocean.herokuapp.com/admin/',details)
         .then(response =>{
             dispatch(setLogin(response.data));
+            console.log('Click on >>>>>>>>>>>')
+            console.log('Click on >>>>>>>>>>>')
+            console.log('Click on >>>>>>>>>>>')
+            console.log('Click on >>>>>>>>>>>')
+            console.log(response.data);
         })
         .catch(error =>{
             dispatch(loginFailed(error.data))

@@ -11,10 +11,10 @@ def get_file_ext(file):
     return name,ext
 
 def upload_image_field(instance,filename):
-    new_filename=random.randint(1,5446346843163)
+    # new_filename=random.randint(1,5446346843163)
     name,ext=get_file_ext(filename)
-    finalname='{new_name}{ext}'.format(new_name=new_filename,ext=ext)
-    return 'media/profile/{new_filename}/{finalname}'.format(new_filename=new_filename,finalname=finalname)
+    finalname='{new_name}{ext}'.format(new_name=name,ext=ext)
+    return 'media/profile/{username}/{new_filename}/{finalname}'.format(username=instance.user,new_filename=name,finalname=finalname)
 
 
 class Profile (models.Model):
