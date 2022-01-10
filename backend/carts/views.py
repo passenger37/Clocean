@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 from rest_framework.generics import (
     ListCreateAPIView,
     ListAPIView,
@@ -11,6 +12,7 @@ from rest_framework.exceptions import NotAcceptable, ValidationError, Permission
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import Cart, CartItem
 from products.models import Product
@@ -18,14 +20,14 @@ from products.models import Product
 
 class CartItemAPIView(ListCreateAPIView):
     serializer_class = CartItemSerializer
-    authentication_classes=[SessionAuthentication]
+    authentication_classes=[JWTAuthentication,SessionAuthentication]
     permissions_classes = [IsAuthenticated,]
 
     def get_queryset(self):
         user = self.request.user
         queryset = CartItem.objects.filter(cart__user=user)
-        print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-        print(queryset)
+        # print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+        # print(queryset)
         return queryset
 
     def create(self, request, *args, **kwargs):
@@ -33,20 +35,35 @@ class CartItemAPIView(ListCreateAPIView):
         cart = get_object_or_404(Cart, user=user)
         product = get_object_or_404(Product, pk=request.data["product"])
         quantity = int(request.data["quantity"])
+        # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        # print(Product.objects.get(pk=request.data["product"]))
+        if CartItem.objects.filter(product__title=product):
+            # print("ITEM ALREADY IN THERE")
+            # print(cart)
+            cart_obj=CartItem.objects.filter(product__title=product).update(quantity=F('quantity')+1)
+            # TODO: return data when added quantity in exixting cartitem
+            data={
+                "msg":"Iterm Added Again",
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
+        else:
 
-        cart_item = CartItem(cart=cart, product=product, quantity=quantity)
-        cart_item.save()
-        serializer = CartItemSerializer(cart_item)
-        total = float(product.price) * float(quantity)
-        cart.total = total
-        cart.save()
+            cart_item = CartItem(cart=cart, product=product, quantity=quantity)
+            cart_item.save()
+            print("NEW ITEM ADDED IN CART")
+            serializer = CartItemSerializer(cart_item)
+            # total = float(product.price) * float(int(quantity))
+            # # TODO: m2m_change signal use for total 
+            # cart.total =float(cart.total)+ total
+            # print("NEW PRODUCT ADD IN CART >>>>>>>>>>>>>>>>>>>>")
+            cart.save()
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class CartItemView(RetrieveUpdateDestroyAPIView):
-    serializer_class = CartItemSerializer
-    authentication_classes=[SessionAuthentication]
+    serializer_class = CartItemUpdateSerializer
+    authentication_classes=[JWTAuthentication,SessionAuthentication]
     permissions_classes = [IsAuthenticated,]
     queryset = CartItem.objects.all()
 
@@ -59,12 +76,9 @@ class CartItemView(RetrieveUpdateDestroyAPIView):
 
     def update(self, request, *args, **kwargs):
         cart_item = self.get_object()
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        print('CART UPDATE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         print(self.get_object())
-        print(request.data)
-        product = get_object_or_404(Product, pk=request.data["product"])
-        quantity = int(request.data["quantity"])
-
+        # print(request.data)
         serializer = CartItemUpdateSerializer(cart_item, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -80,3 +94,4 @@ class CartItemView(RetrieveUpdateDestroyAPIView):
             {"detail": _("your item has been deleted.")},
             status=status.HTTP_204_NO_CONTENT,
         )
+

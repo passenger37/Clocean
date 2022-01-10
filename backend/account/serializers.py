@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.response import Response
-
+from .models import Address,Profile
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -45,3 +45,20 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields=['username', 'password']
+
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field="username", read_only=True)
+    gender = serializers.SerializerMethodField()
+    def get_gender(self, obj):
+        return obj.get_gender_display()
+
+    class Meta:
+        model = Profile
+        fields = ["user", "profile_img", "mobile_number", "gender", "about"]
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        exclude = "modified"

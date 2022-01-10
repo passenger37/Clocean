@@ -8,7 +8,8 @@ import logo from '../../assests/favicon.png';
 
 // redux
 // import {connect} from 'react-redux';
-// import * as register from '../../store/action/register';
+// import * as cartAction from '../../store/action/cart';
+// import * as productAction from '../../store/action/products';
 
 // Components
 import Search from  '../../components/Search/Search';
@@ -16,26 +17,32 @@ import Short from '../../components/Navigation/short-screen/Short';
 import FullScreen from '../../components/Navigation/web-screen/Web';
 
 class Header extends Component {
-
-    state={
-        fabarClassName:'',
-        sidePanel:'hide',
-        searchResults:'',
-        typingTimeout: 0,
-        typing:false,
+    constructor(props) {
+        super(props);
+        this.state={
+            fabarClassName:'',
+            sidePanel:'hide',
+            searchResults:'',
+            typingTimeout: 0,
+            typing:false,
+        }
+    
     }
 
+    // componentDidMount() {
+    // this.props.getProducts();
+    // this.props.getCart();
+    // }
+
     toggleFabar =(e)=>{ 
-        console.log('Click on fabar');
+        // console.log('Click on fabar');
         if (this.state.fabarClassName==''){
             this.setState({fabarClassName:'change',
                             sidePanel:''})
-            console.log('Click on fabar changeeee');
         }
         else{
             this.setState({fabarClassName:'',
                             sidePanel:'hide'})
-            console.log('Click on fabar <<<<<<<<<<<');
         }
     }
 
@@ -88,4 +95,21 @@ class Header extends Component {
     }
 }
 
-export default Header;
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+      getCart:()=>{dispatch(cartAction.initCart())},
+      getProducts:()=>{dispatch(productAction.initProducts())},
+    }
+  }
+  
+  const mapStateToProps=(state)=>{
+    return{
+      cart: state.cart,
+      products: state.products,
+      error:state.error,
+    }
+  };
+
+//   export default connect(mapStateToProps,mapDispatchToProps)(Header);
+  export default Header;

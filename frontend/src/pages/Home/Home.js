@@ -1,66 +1,74 @@
+import './Home.css';
 import React, { Component } from 'react';
 import axios from 'axios';
+
+import Cards from '../../components/Cards/Cards';
+
+// redux
+import {connect} from 'react-redux';
+import * as cartAction from '../../store/action/cart';
+import * as productAction from '../../store/action/products';
 class Home extends Component {
 
   constructor(props) {
-    
     super(props);
-    this.state={
-      products: [],
-    }
-  
+    // const cartLoaded = this.props.cartIsLoaded;
+    // const productLoaded = this.props.productsIsLoaded;
   }
-
 
 
   componentDidMount(){
-    axios.get('http://127.0.0.1:8000/api/products/products/',)
-    // axios.post('https://clocean.herokuapp.com/admin/',details)
-    .then(response =>{
-        console.log('>>>>>>>>>>>>>>>> Form Value')
-        this.setState({
-          producs: response.data
-        })
-        console.log(this.state.producs);
-    })
-    .catch(error =>{
-      console.log('>>>>>>>>>>>>> Form Error ')
-      console.log(error)
-    })
+    this.props.getProducts();
+    this.props.getCart();
+    console.log('HOME PAGE....')
+    // console.log(this.props);
+    // console.log(this.props.cart);
+  }  
 
-  }
+ 
 
+  
+  
   render() {
-    
-    return (
-      <div>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
-        <h1>Home Page</h1>
+    let Card;
+    if(this.props.productsIsLoaded && this.props.cartIsLoaded){
+    Card=(<Cards data={this.props.products}/>);
+    }
+    else{
+      Card= (<h1>Loading ....</h1>);
+    }
 
+    return (
+      <div className='home'>
+        {/* <h1>Poster</h1>
+        <h2>offers</h2>
+        <h5>Trending</h5>
+        <h5>Mens</h5>
+        <h5>WoMens</h5> */}
+        <h1>Home PAge</h1>
+        {Card}
+
+        
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps=(state)=>{
+  return{
+    cart: state.cart,
+    products: state.products,
+    error:state.error,
+    productsIsLoaded: state.productsIsLoaded,
+    cartIsLoaded: state.cartIsLoaded,
+  }
+};
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    getCart:()=>{dispatch(cartAction.initCart())},
+    getProducts:()=>{dispatch(productAction.initProducts())},
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

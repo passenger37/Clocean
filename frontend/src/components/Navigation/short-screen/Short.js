@@ -23,10 +23,12 @@ export class short extends Component {
                     <NavLink to="/signup" >New User ? </NavLink>
                 </div>
                 <div className='short_container2'>
-                    <div className='short-features'>
-                        <img  src ={cart}/>
-                        <small>Cart</small>
-                    </div>
+                    <NavLink to="/cart" >
+                        <div className='short-features'>
+                            <img  src ={cart}/>
+                            <small>Cart</small>
+                        </div>
+                    </NavLink>
                     <div className='short-features'>
                         <img  src ={male}/>
                         <small>Male</small>

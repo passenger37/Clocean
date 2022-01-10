@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # rest
     'rest_framework',
+    # 'rest_framework.authtoken',
     'rest_framework_simplejwt',
     # CORS
     'corsheaders',
@@ -46,7 +47,9 @@ INSTALLED_APPS = [
     'account',
     'products',
     'search',
-    'carts'
+    'carts',
+    'checkout',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -67,13 +70,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework.pagination.LimitOffsetPagination',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
 )
 }
 
-JWT_AUTH = {
+SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
     'JWT_ALLOW_REFRESH': True,
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),

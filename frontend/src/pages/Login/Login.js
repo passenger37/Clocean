@@ -78,9 +78,21 @@ class Login extends Component {
             console.log('>>>>>>>>>>>>> Form Error ')
             console.log(error)
         })
+
+        axios.post('http://127.0.0.1:8000/api/token/',data)
+        // axios.post('https://clocean.herokuapp.com/admin/',details)
+        .then(response =>{
+            console.log('>>>>>>>>>>>>>>>> Form Token')
+            console.log(response.data);
+            sessionStorage.setItem('data',JSON.stringify(response.data));
+        })
+        .catch(error =>{
+            console.log('>>>>>>>>>>>>> Form Error ')
+            console.log(error)
+        })
     }
 
-    checkValidity(value, rules) {
+    checkValidity=(value, rules)=> {
         let isValid = true;
         if (!rules) {
             return true;
@@ -142,7 +154,7 @@ class Login extends Component {
                            invalid={!FormElement.config.valid}
                        />))
                }
-               <Button class="btn" btnType="submit">Login</Button>
+               <Button class="btn" btnType="submit" name='Login'/>
            </form>
            );
 

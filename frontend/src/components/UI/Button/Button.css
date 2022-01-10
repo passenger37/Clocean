@@ -1,0 +1,33 @@
+.btn{
+    background-color: grey;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px 0px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.5s;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn1{
+    background-color: rgb(83, 39, 39);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px 0px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.5s;
+    position: relative;
+    text-transform: uppercase;
+    width: 15%;
+    box-sizing: border-box;
+}

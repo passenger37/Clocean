@@ -7,11 +7,11 @@ import reportWebVitals from './reportWebVitals';
 // redux
 import{ Provider } from 'react-redux';
 import { createStore ,applyMiddleware , compose} from 'redux';
-import register from './store/reducers/register';
+import home from './store/reducers/home';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const store=createStore(register,composeEnhancers(
+const store=createStore(home,composeEnhancers(
   applyMiddleware(thunk)
 ));
 
