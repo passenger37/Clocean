@@ -6,12 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 // redux
 import{ Provider } from 'react-redux';
-import { createStore ,applyMiddleware , compose} from 'redux';
-import home from './store/reducers/home';
+import { createStore ,combineReducers,applyMiddleware , compose} from 'redux';
+import homeReducer from './store/reducers/home';
+import checkoutReducer from './store/reducers/checkout';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const store=createStore(home,composeEnhancers(
+const rootReducer =combineReducers({
+  checkout:checkoutReducer,
+  home:homeReducer,
+})
+const store=createStore(rootReducer,composeEnhancers(
   applyMiddleware(thunk)
 ));
 

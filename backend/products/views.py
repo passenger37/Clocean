@@ -15,12 +15,12 @@ class ProductView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permissions_classes = [AllowAny,]
-    authentication_classes = [SessionAuthentication]
+    # authentication_classes = [SessionAuthentication]
 
 # Details View of Product
 class ProductDetailsView(APIView):
     permissions_classes = [AllowAny,]
-    authentication_classes = [SessionAuthentication]
+    # authentication_classes = [SessionAuthentication]
 
     def get(self, request, pk):
         product= Product.objects.get(pk=pk)

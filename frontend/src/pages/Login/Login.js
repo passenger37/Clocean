@@ -60,6 +60,7 @@ class Login extends Component {
         //     username:'anand',
         //     password:'anand'
         // };
+        // console.log('LOGIN >>>>>>>>>');
 
         const data={
             username:this.state.loginForm.name.value,

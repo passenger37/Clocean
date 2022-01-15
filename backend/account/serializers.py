@@ -61,4 +61,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        exclude = "modified"
+        fields = ["id",
+                "name",
+                "city",
+                "district",
+                "street_address",
+                "postal_code",
+                "primary",
+                "phone_number",
+                "building_number",
+                "apartment_number"]

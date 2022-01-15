@@ -1,14 +1,14 @@
-import React from 'react'
+// import React from 'react';
 import axios from 'axios';
 import * as actionType from './actionTypes';
 
 
 export const initLogin = () => {
     return dispatch =>{
-        const details={
-            username:'anand',
-            password:'anand'
-        };
+        // const details={
+        //     username:'anand',
+        //     password:'anand'
+        // };
         axios.post('http://127.0.0.1:8000/account/login/',details)
         // axios.post('https://clocean.herokuapp.com/admin/',details)
         .then(response =>{

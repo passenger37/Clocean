@@ -26,11 +26,11 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-# Male Product Model
-class MensProduct(models.Model):
-    pass
+# # Male Product Model
+# class MensProduct(models.Model):
+#     pass
 
 
-# FeMale Product Model
-class MensProduct(models.Model):
-    pass
+# # FeMale Product Model
+# class MensProduct(models.Model):
+#     pass

@@ -14,12 +14,13 @@ export const initCart=()=>{
         // axios.post('https://clocean.herokuapp.com/admin/',details)
         .then(response =>{
             console.log('FETCHED CART')
+            console.log(response.data);
             dispatch(setCart(response.data));
             dispatch(cartIsLoaded(true));
         })
         .catch(error =>{
           console.log('FETCHING CART FAILED ')
-          dispatch(fetchCartFailed(response.data));
+          dispatch(fetchCartFailed(error));
         })
     }
 }

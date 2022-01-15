@@ -17,7 +17,7 @@ export const initProducts=()=>{
         })
         .catch(error =>{
             console.log('FETCHED PRODUCTS Failed...')
-            dispatch(fetchProductFailed(response.data));
+            dispatch(fetchProductFailed(error));
         })
     }
 }

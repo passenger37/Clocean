@@ -26,8 +26,6 @@ class CartItemAPIView(ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         queryset = CartItem.objects.filter(cart__user=user)
-        # print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-        # print(queryset)
         return queryset
 
     def create(self, request, *args, **kwargs):
@@ -35,11 +33,7 @@ class CartItemAPIView(ListCreateAPIView):
         cart = get_object_or_404(Cart, user=user)
         product = get_object_or_404(Product, pk=request.data["product"])
         quantity = int(request.data["quantity"])
-        # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        # print(Product.objects.get(pk=request.data["product"]))
         if CartItem.objects.filter(product__title=product):
-            # print("ITEM ALREADY IN THERE")
-            # print(cart)
             cart_obj=CartItem.objects.filter(product__title=product).update(quantity=F('quantity')+1)
             # TODO: return data when added quantity in exixting cartitem
             data={
@@ -52,10 +46,6 @@ class CartItemAPIView(ListCreateAPIView):
             cart_item.save()
             print("NEW ITEM ADDED IN CART")
             serializer = CartItemSerializer(cart_item)
-            # total = float(product.price) * float(int(quantity))
-            # # TODO: m2m_change signal use for total 
-            # cart.total =float(cart.total)+ total
-            # print("NEW PRODUCT ADD IN CART >>>>>>>>>>>>>>>>>>>>")
             cart.save()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)

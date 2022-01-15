@@ -31,7 +31,8 @@ class Home extends Component {
   
   render() {
     let Card;
-    if(this.props.productsIsLoaded && this.props.cartIsLoaded){
+    // if(this.props.productsIsLoaded && this.props.cartIsLoaded)
+    if(this.props.productsIsLoaded ){
     Card=(<Cards data={this.props.products}/>);
     }
     else{
@@ -56,11 +57,11 @@ class Home extends Component {
 
 const mapStateToProps=(state)=>{
   return{
-    cart: state.cart,
-    products: state.products,
-    error:state.error,
-    productsIsLoaded: state.productsIsLoaded,
-    cartIsLoaded: state.cartIsLoaded,
+    cart: state.home.cart,
+    products: state.home.products,
+    error:state.home.error,
+    productsIsLoaded: state.home.productsIsLoaded,
+    cartIsLoaded: state.home.cartIsLoaded,
   }
 };
 

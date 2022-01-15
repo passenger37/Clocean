@@ -6,9 +6,10 @@ from products.serializers import ProductSerializer
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
+    total = serializers.CharField(source='cart.total',read_only=True)
     class Meta:
         model = CartItem
-        fields = ['id', 'cart',"product", "quantity"]
+        fields = ['id', 'cart',"product", "quantity",'subtotal','total']
 
 
 class CartItemMiniSerializer(serializers.ModelSerializer):
@@ -22,4 +23,7 @@ class CartItemUpdateSerializer(serializers.ModelSerializer):
     # product=ProductSerializer(read_only=True)
     class Meta:
         model = CartItem
-        fields = ["quantity"]
+        fields = ["quantity","subtotal"]
+
+# TODO: total serializer just for total after that view for it
+# TODO: subtotal model in CART_ITEM for particular cartitem

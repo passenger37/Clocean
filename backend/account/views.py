@@ -14,6 +14,7 @@ from rest_framework.reverse import reverse
 from rest_framework import views 
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 # from rest_framework_simplejwt.settings import api_settings
 
 # JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
@@ -61,7 +62,7 @@ def logout_user(request):
 
 class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
-    authentication_classes=[SessionAuthentication]
+    authentication_classes=[SessionAuthentication,JWTAuthentication]
 
     def get(self, request, pk):
         profile = Profile.objects.get(pk=pk)
