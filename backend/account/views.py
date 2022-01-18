@@ -15,10 +15,7 @@ from rest_framework import views
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
-# from rest_framework_simplejwt.settings import api_settings
 
-# JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
-# JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
 class RegisterView(generics.CreateAPIView):

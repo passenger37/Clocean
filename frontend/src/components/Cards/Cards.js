@@ -6,7 +6,7 @@ import SingleCard from '../SingleCard/SingleCard';
 export default function Cards(props) {
 
     const Cards=(
-                <div>
+                <div className="slide-cards">
                 {
                     props.data.map(val=>{
                         return( 
@@ -33,8 +33,7 @@ export default function Cards(props) {
 
     return (
         
-        <div>
-            <h1>Cards</h1>
+        <div className={props.class}>
             {Cards}
         </div>
     )

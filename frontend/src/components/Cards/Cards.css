@@ -1,0 +1,15 @@
+/* .slide{
+
+} */
+
+.slide-cards{
+    display:flex;
+    overflow-x: scroll;
+    /* scrollbar-width:thin; */
+
+}
+
+/* .slide-cards::-webkit-scrollbar-width{
+    display: block;
+    width: 50px;
+} */

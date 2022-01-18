@@ -6,6 +6,8 @@ import {NavLink} from 'react-router-dom';
 // Components
 import CartItem from '../../components/CartItem/CartItem';
 import Button from '../../components/UI/Button/Button';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 //redux
 import {connect} from 'react-redux';
@@ -38,7 +40,12 @@ class Cart extends React.Component{
         </div>);
     }
     else{
-        cartItem=(<h1>Cart is Loading...</h1>)
+        cartItem=(
+            <div>
+                <Skeleton /> 
+                <Skeleton count={5} /> 
+          </div>
+        )
     }
 
     return (

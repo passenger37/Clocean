@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Redirecting...</title>
+	</head>
+	<body>
+		<br><br><h1><center>{{ company_name }}</center></h1><br><br><br>
+		<h1><center>Redirecting to payment gateway<br>Please do not refresh or go back.</center></h1>
+		<form method="POST" action="{{ payment_url }}", name="form1">
+		{% csrf_token %}
+		{% for key, value in data_dict.items %}
+			<input  name="{{key}}" value="{{value}}">
+		{% endfor %}
+		<button type="Submit" >Submit</button>
+			{% comment %} <script type="text/javascript">
+				document.form1.submit();
+			</script> {% endcomment %}
+		</form>
+	</body>
+</html>

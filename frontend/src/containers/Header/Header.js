@@ -12,7 +12,7 @@ import logo from '../../assests/favicon.png';
 // import * as productAction from '../../store/action/products';
 
 // Components
-import Search from  '../../components/Search/Search';
+// import Search from  '../../components/Search/Search';
 import Short from '../../components/Navigation/short-screen/Short';
 import FullScreen from '../../components/Navigation/web-screen/Web';
 
@@ -76,7 +76,7 @@ class Header extends Component {
             <Fragment>
                 <div className='header'>
                     <NavLink to="/" ><img  src ={logo} alt='icon' className='header_img'/></NavLink>
-                    <Search searchData={this.searchData} saearchResult={this.state.searchResults}/>
+                    {/* <Search searchData={this.searchData} saearchResult={this.state.searchResults}/> */}
                     <FullScreen/>
                     <div className="header_nav">
                         <input type="checkbox" name="checkbox" id="checkbtn" />

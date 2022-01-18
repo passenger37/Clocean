@@ -3,7 +3,7 @@ import './Details.css';
 import axios from 'axios';
 
 // components
-import SingleCard from '../../components/SingleCard/SingleCard';
+// import SingleCard from '../../components/SingleCard/SingleCard';
 import Button from '../../components/UI/Button/Button';
 
 class DetailPage extends React.Component {
@@ -13,7 +13,7 @@ class DetailPage extends React.Component {
         super(props);
         this.state={
             productId:parseInt(this.props.match.params.id),
-            productDetail:[],
+            productAdded:[],
             passedState:this.props.location.state.val|| 'Unknown',
             token:JSON.parse(sessionStorage.getItem('data'))
         };
@@ -29,57 +29,40 @@ class DetailPage extends React.Component {
             quantity: 1
         }
         console.log('GETTING CART .....',data)
-        console.log(this.state.token)
+        // console.log(this.state.token)
         axios.post('http://127.0.0.1:8000/api/cart/cart/',data,
         { headers: {'Authorization':`Bearer ${this.state.token.access}`}}
         )
         .then(response =>{
-            console.log('>>>>>>>>>>>>>>>> Details Value')
-            // this.setState({
-            //   products: response.data
-            // })
+            // console.log('>>>>>>>>>>>>>>>> Details Value')
+            this.setState({
+              productAdded: response.data
+            })
             console.log(response.data);
         })
         .catch(error =>{
-          console.log('>>>>>>>>>>>>> Details Error ')
+        //   console.log('>>>>>>>>>>>>> Details Error ')
           console.log(error)
         })
 
     }
 
 render() {
+    console.log(this.state.passedState)
     return(
 
-        <div className='details'>
-            <SingleCard
-                key={this.state.passedState.id}
-                title={this.state.passedState.title}
-                overview={this.state.passedState.description}
-                // rating={this.state.passedState.vote_average}
-                // type={this.state.passedState.media_type}
-                price={this.state.passedState.price}
-                poster={this.state.passedState.image} 
-                />
+        <div className='detail'>
+            <img className='detail-image' src={this.state.passedState.image} alt="" />
+            <h1 className='detail-name'>{this.state.passedState.title}</h1>
+            <small className='detail-description'>{this.state.passedState.description}</small>
+            <small className='detail-category'>{this.state.passedState.category}</small>
+            <strong className='detail-price'>{this.state.passedState.price}</strong> 
+            <strong className='detail-type'>{this.state.passedState.type}</strong> 
             <Button clicked={this.saveInCart} class='btn1' name='ADD'/>
         </div>
     )
 }
 }
-
-
-
-// function DetailPage() {
-
-//     const { id } = useParams();
-//     console.log(id);
-
-
-//     return (
-//             <div className="details">
-//                 <h1>Details</h1>
-//             </div>
-//     )
-// }
 
 
 export default DetailPage;

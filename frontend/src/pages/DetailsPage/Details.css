@@ -1,5 +1,10 @@
-.details {
+.detail{
     min-height: 100vh;
     position: relative;
     padding-top:90px;
+}
+
+.detail-image{
+    position: relative;
+    left: 0;
 }

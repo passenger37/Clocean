@@ -27,6 +27,10 @@ class ProductDetailsView(APIView):
         serializer = ProductSerializer(product, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+# TODO:UPVOTE and DOWNvote
+
+
 # TODO poster
 class PostersView(generics.ListAPIView):
     pass

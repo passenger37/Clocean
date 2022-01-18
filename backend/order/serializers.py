@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from order.models import Order, OrderItem
+from order.models import Order
 from account.serializers import AddressSerializer
 from products.serializers import ProductSerializer
 
@@ -7,7 +7,7 @@ from products.serializers import ProductSerializer
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        exclude = "modified"
+        # exclude = "modified"
 
 
 class OrderMiniSerializer(serializers.ModelSerializer):
@@ -18,16 +18,16 @@ class OrderMiniSerializer(serializers.ModelSerializer):
         exclude = "modified"
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OrderItem
-        exclude = "modified"
+# class OrderItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = OrderItem
+#         exclude = "modified"
 
 
-class OrderItemMiniSerializer(serializers.ModelSerializer):
-    order = OrderMiniSerializer(required=False, read_only=True)
-    product = ProductSerializer(required=False, read_only=True)
+# class OrderItemMiniSerializer(serializers.ModelSerializer):
+#     order = OrderMiniSerializer(required=False, read_only=True)
+#     product = ProductSerializer(required=False, read_only=True)
 
-    class Meta:
-        model = OrderItem
-        exclude = "modified"
+#     class Meta:
+#         model = OrderItem
+#         exclude = "modified"

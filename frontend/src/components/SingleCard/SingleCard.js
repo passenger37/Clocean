@@ -5,8 +5,8 @@ function SingleCard(props) {
 
 
     return (
-        <div>
-            <h1>Single Cards</h1>
+        <div className="product-card">
+            {/* <h1>Single Cards</h1> */}
             <img src={`${props.poster}`} alt="product pic" width="180" height="250"/> <br/>
             <strong>{props.title}</strong> <br />
             <small>{props.discription}</small>

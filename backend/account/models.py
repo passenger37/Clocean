@@ -63,6 +63,7 @@ class TimeStampedModel(models.Model):
 class Address(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="address", on_delete=models.CASCADE)
     name=models.CharField(max_length=100,default='Unknown')
+    number=models.CharField(max_length=100,default='Unknown')
     city = models.CharField(max_length=100, blank=False, null=False)
     district = models.CharField(max_length=100, blank=False, null=False)
     street_address = models.CharField(max_length=250, blank=False, null=False)
